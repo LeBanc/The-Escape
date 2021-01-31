@@ -162,6 +162,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 635722589}
+  movementSpeed: 3
+  rotationSpeed: 180
   patrolPoints: []
 --- !u!136 &16920685
 CapsuleCollider:
@@ -447,6 +449,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 635722589}
+  movementSpeed: 3
+  rotationSpeed: 180
   nearCellPrefab: {fileID: 6096859354434598771, guid: 852940d722eab57458c783bde31f6c10,
     type: 3}
   farCellPrefab: {fileID: 7437195944864250250, guid: f7a6a2ef8438b3b4889880554554fbe2,
@@ -794,7 +798,7 @@ PrefabInstance:
     - target: {fileID: 6367528196083843022, guid: 029e84f261f44a64b94964963726927f,
         type: 3}
       propertyPath: m_Name
-      value: Policecar (2)
+      value: Policecar3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 029e84f261f44a64b94964963726927f, type: 3}
@@ -986,6 +990,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 635722589}
+  movementSpeed: 3
+  rotationSpeed: 180
   patrolPoints:
   - {fileID: 1176963581}
   - {fileID: 1337615910}
@@ -1161,7 +1167,7 @@ PrefabInstance:
     - target: {fileID: 2172286716395761438, guid: 4f339f6ad8704954aac9c2363443a600,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.54
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 2172286716395761438, guid: 4f339f6ad8704954aac9c2363443a600,
         type: 3}
@@ -1171,7 +1177,7 @@ PrefabInstance:
     - target: {fileID: 2172286716395761438, guid: 4f339f6ad8704954aac9c2363443a600,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.45
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2172286716395761438, guid: 4f339f6ad8704954aac9c2363443a600,
         type: 3}
@@ -1216,7 +1222,7 @@ PrefabInstance:
     - target: {fileID: 2172286716396057406, guid: 4f339f6ad8704954aac9c2363443a600,
         type: 3}
       propertyPath: m_Name
-      value: Male 4 (1)
+      value: Enemy5
       objectReference: {fileID: 0}
     - target: {fileID: 2172286716396057406, guid: 4f339f6ad8704954aac9c2363443a600,
         type: 3}
@@ -1560,7 +1566,7 @@ PrefabInstance:
     - target: {fileID: 2172286716396057406, guid: 4f339f6ad8704954aac9c2363443a600,
         type: 3}
       propertyPath: m_Name
-      value: Male 4
+      value: Enemy1
       objectReference: {fileID: 0}
     - target: {fileID: 2172286716396057406, guid: 4f339f6ad8704954aac9c2363443a600,
         type: 3}
@@ -1708,7 +1714,7 @@ PrefabInstance:
     - target: {fileID: 3656148963430918399, guid: f049dfca58e897a47b028e447b7adee5,
         type: 3}
       propertyPath: m_Name
-      value: Car_3 (2)
+      value: Car10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f049dfca58e897a47b028e447b7adee5, type: 3}
@@ -1907,7 +1913,7 @@ PrefabInstance:
     - target: {fileID: 2843745011147152051, guid: a82ab613de593e2439b710b4ce1813b9,
         type: 3}
       propertyPath: m_Name
-      value: Male 1
+      value: Enemy4
       objectReference: {fileID: 0}
     - target: {fileID: 2843745011147152051, guid: a82ab613de593e2439b710b4ce1813b9,
         type: 3}
@@ -1940,6 +1946,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 635722589}
+  movementSpeed: 3
+  rotationSpeed: 180
   patrolPoints:
   - {fileID: 1889875371}
   - {fileID: 1646356782}
@@ -2140,7 +2148,7 @@ PrefabInstance:
     - target: {fileID: 2450222347794517104, guid: c37be4d5689689143a908ca6dd2a153e,
         type: 3}
       propertyPath: m_Name
-      value: Car_1 (2)
+      value: Car12
       objectReference: {fileID: 0}
     - target: {fileID: 2450222347796786962, guid: c37be4d5689689143a908ca6dd2a153e,
         type: 3}
@@ -2297,6 +2305,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 635722589}
+  movementSpeed: 3
+  rotationSpeed: 180
   patrolPoints: []
 --- !u!136 &643557672
 CapsuleCollider:
@@ -2640,7 +2650,7 @@ PrefabInstance:
     - target: {fileID: 4106887383856472631, guid: 3696e9f61b6ad3240a9325b96e896680,
         type: 3}
       propertyPath: m_Name
-      value: Car_6 (1)
+      value: Car8
       objectReference: {fileID: 0}
     - target: {fileID: 4106887383858468853, guid: 3696e9f61b6ad3240a9325b96e896680,
         type: 3}
@@ -2848,7 +2858,7 @@ PrefabInstance:
     - target: {fileID: 2450222347794517104, guid: c37be4d5689689143a908ca6dd2a153e,
         type: 3}
       propertyPath: m_Name
-      value: Car_1 (1)
+      value: Car6
       objectReference: {fileID: 0}
     - target: {fileID: 2450222347796786962, guid: c37be4d5689689143a908ca6dd2a153e,
         type: 3}
@@ -2929,7 +2939,7 @@ PrefabInstance:
     - target: {fileID: 2778272776197860321, guid: f0620bb8153c9ad41b2745ff4db4dcf7,
         type: 3}
       propertyPath: m_Name
-      value: Car_2 (1)
+      value: Car13
       objectReference: {fileID: 0}
     - target: {fileID: 2778272776198052355, guid: f0620bb8153c9ad41b2745ff4db4dcf7,
         type: 3}
@@ -3131,7 +3141,7 @@ PrefabInstance:
     - target: {fileID: 4106887383856472631, guid: 3696e9f61b6ad3240a9325b96e896680,
         type: 3}
       propertyPath: m_Name
-      value: Car_6 (2)
+      value: Car14
       objectReference: {fileID: 0}
     - target: {fileID: 4106887383858468853, guid: 3696e9f61b6ad3240a9325b96e896680,
         type: 3}
@@ -3304,7 +3314,7 @@ PrefabInstance:
     - target: {fileID: 3656148963430918399, guid: f049dfca58e897a47b028e447b7adee5,
         type: 3}
       propertyPath: m_Name
-      value: Car_3 (3)
+      value: Car11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f049dfca58e897a47b028e447b7adee5, type: 3}
@@ -3318,7 +3328,7 @@ PrefabInstance:
     - target: {fileID: 4924163573917178410, guid: e971aea329889504ab6a101c50c937a1,
         type: 3}
       propertyPath: m_Name
-      value: Car_5 (2)
+      value: Car15
       objectReference: {fileID: 0}
     - target: {fileID: 4924163573917505566, guid: e971aea329889504ab6a101c50c937a1,
         type: 3}
@@ -3597,6 +3607,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 928455169}
+  - {fileID: 1708956011}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 58.13, y: 0, z: 0}
@@ -3678,7 +3689,7 @@ PrefabInstance:
     - target: {fileID: 6490848711773347100, guid: 25ff9301fb61050489c4885d05047d32,
         type: 3}
       propertyPath: m_Name
-      value: Male 2 (1)
+      value: Enemy7
       objectReference: {fileID: 0}
     - target: {fileID: 6490848711773347100, guid: 25ff9301fb61050489c4885d05047d32,
         type: 3}
@@ -3711,6 +3722,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 635722589}
+  movementSpeed: 3
+  rotationSpeed: 180
   patrolPoints:
   - {fileID: 2137862758}
   - {fileID: 1365286783}
@@ -3991,7 +4004,7 @@ PrefabInstance:
     - target: {fileID: 8676745181389521993, guid: 405ce37bb502f094e89d5dce904423c3,
         type: 3}
       propertyPath: m_Name
-      value: Male 3
+      value: Enemy2
       objectReference: {fileID: 0}
     - target: {fileID: 8676745181389521993, guid: 405ce37bb502f094e89d5dce904423c3,
         type: 3}
@@ -4666,7 +4679,7 @@ PrefabInstance:
     - target: {fileID: 3656148963430918399, guid: f049dfca58e897a47b028e447b7adee5,
         type: 3}
       propertyPath: m_Name
-      value: Car_3 (1)
+      value: Car7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f049dfca58e897a47b028e447b7adee5, type: 3}
@@ -4798,6 +4811,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 635722589}
+  movementSpeed: 3
+  rotationSpeed: 180
   patrolPoints: []
 --- !u!136 &1453995753
 CapsuleCollider:
@@ -4924,7 +4939,7 @@ PrefabInstance:
     - target: {fileID: 2778272776197860321, guid: f0620bb8153c9ad41b2745ff4db4dcf7,
         type: 3}
       propertyPath: m_Name
-      value: Car_2 (2)
+      value: Car16
       objectReference: {fileID: 0}
     - target: {fileID: 2778272776198052355, guid: f0620bb8153c9ad41b2745ff4db4dcf7,
         type: 3}
@@ -5271,6 +5286,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 635722589}
+  movementSpeed: 3
+  rotationSpeed: 180
   patrolPoints:
   - {fileID: 1422344040}
   - {fileID: 2137862758}
@@ -5451,6 +5468,146 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 631c141a07c8a634986a3c48dbdb15d0, type: 3}
+--- !u!1 &1708956010
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1708956011}
+  - component: {fileID: 1708956013}
+  - component: {fileID: 1708956012}
+  m_Layer: 0
+  m_Name: BackgroundSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1708956011
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708956010}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 963194228}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1708956012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708956010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6131ee99ed7d0d4297b6f9f712c6e04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!82 &1708956013
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708956010}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 1a5f50841ed6d8d409b040c39617d712, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.7
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &1780205330
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5516,7 +5673,7 @@ PrefabInstance:
     - target: {fileID: 6367528196083843022, guid: 029e84f261f44a64b94964963726927f,
         type: 3}
       propertyPath: m_Name
-      value: Policecar (1)
+      value: Policecar2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 029e84f261f44a64b94964963726927f, type: 3}
@@ -5585,7 +5742,7 @@ PrefabInstance:
     - target: {fileID: 2843745011147152051, guid: a82ab613de593e2439b710b4ce1813b9,
         type: 3}
       propertyPath: m_Name
-      value: Male 1 (1)
+      value: Enemy6
       objectReference: {fileID: 0}
     - target: {fileID: 2843745011147152051, guid: a82ab613de593e2439b710b4ce1813b9,
         type: 3}
@@ -6050,7 +6207,7 @@ PrefabInstance:
     - target: {fileID: 6490848711773347100, guid: 25ff9301fb61050489c4885d05047d32,
         type: 3}
       propertyPath: m_Name
-      value: Male 2
+      value: Enemy3
       objectReference: {fileID: 0}
     - target: {fileID: 6490848711773347100, guid: 25ff9301fb61050489c4885d05047d32,
         type: 3}
@@ -6330,7 +6487,7 @@ PrefabInstance:
     - target: {fileID: 4924163573917178410, guid: e971aea329889504ab6a101c50c937a1,
         type: 3}
       propertyPath: m_Name
-      value: Car_5 (1)
+      value: Car9
       objectReference: {fileID: 0}
     - target: {fileID: 4924163573917505566, guid: e971aea329889504ab6a101c50c937a1,
         type: 3}
@@ -6484,7 +6641,7 @@ PrefabInstance:
     - target: {fileID: 3656148963430918399, guid: f049dfca58e897a47b028e447b7adee5,
         type: 3}
       propertyPath: m_Name
-      value: Car_3
+      value: Car4
       objectReference: {fileID: 0}
     - target: {fileID: 3656148963430918399, guid: f049dfca58e897a47b028e447b7adee5,
         type: 3}
@@ -6503,7 +6660,7 @@ PrefabInstance:
     - target: {fileID: 2778272776197860321, guid: f0620bb8153c9ad41b2745ff4db4dcf7,
         type: 3}
       propertyPath: m_Name
-      value: Car_2
+      value: Car2
       objectReference: {fileID: 0}
     - target: {fileID: 2778272776197860321, guid: f0620bb8153c9ad41b2745ff4db4dcf7,
         type: 3}
@@ -6662,7 +6819,7 @@ PrefabInstance:
     - target: {fileID: 2450222347794517104, guid: c37be4d5689689143a908ca6dd2a153e,
         type: 3}
       propertyPath: m_Name
-      value: Car_1
+      value: Car3
       objectReference: {fileID: 0}
     - target: {fileID: 2450222347794517104, guid: c37be4d5689689143a908ca6dd2a153e,
         type: 3}
@@ -6736,7 +6893,7 @@ PrefabInstance:
     - target: {fileID: 6367528196083843022, guid: 029e84f261f44a64b94964963726927f,
         type: 3}
       propertyPath: m_Name
-      value: Policecar
+      value: Policecar1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 029e84f261f44a64b94964963726927f, type: 3}
@@ -6750,7 +6907,7 @@ PrefabInstance:
     - target: {fileID: 4924163573917178410, guid: e971aea329889504ab6a101c50c937a1,
         type: 3}
       propertyPath: m_Name
-      value: Car_5
+      value: Car5
       objectReference: {fileID: 0}
     - target: {fileID: 4924163573917505566, guid: e971aea329889504ab6a101c50c937a1,
         type: 3}
@@ -6874,7 +7031,7 @@ PrefabInstance:
     - target: {fileID: 4106887383856472631, guid: 3696e9f61b6ad3240a9325b96e896680,
         type: 3}
       propertyPath: m_Name
-      value: Car_6
+      value: Car1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3696e9f61b6ad3240a9325b96e896680, type: 3}
