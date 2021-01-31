@@ -192,7 +192,7 @@ public class PlayerController : MonoBehaviour
 
         while(Vector3.Angle(transform.forward,(_position - transform.position)) > 8f)
         {
-            Quaternion deltaRotation = Quaternion.Euler(new Vector3(0f, _sign, 0f));
+            Quaternion deltaRotation = Quaternion.Euler(new Vector3(0f, _sign * 2f, 0f));
             rb.MoveRotation(rb.rotation * deltaRotation);
             yield return null;
         }

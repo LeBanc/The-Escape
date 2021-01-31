@@ -120,6 +120,11 @@ public class GameController : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
 
         Enemy.EndEnemyTurn();
+        foreach (Enemy _enemy in enemiesArray)
+        {
+            _enemy.StopAllCoroutines();
+        }
+
         StartPlayerTurn();
     }
 
