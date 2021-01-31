@@ -5,6 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public Grid grid;
+    public float movementSpeed = 1f;
+    public float rotationSpeed = 90f;
 
     public List<Transform> patrolPoints = new List<Transform>();
     private int patrolIndex;
@@ -84,9 +86,9 @@ public class Enemy : MonoBehaviour
     {
         float _sign = Mathf.Sign(Vector3.SignedAngle(transform.forward, (_position - transform.position), Vector3.up));
 
-        while (Vector3.Angle(transform.forward, (_position - transform.position)) > 8f)
+        while (Vector3.Angle(transform.forward, (_position - transform.position)) > 10f)
         {
-            Quaternion deltaRotation = Quaternion.Euler(new Vector3(0f, _sign * 2f, 0f));
+            Quaternion deltaRotation = Quaternion.Euler(new Vector3(0f, _sign * rotationSpeed * Time.deltaTime, 0f));
             rb.MoveRotation(rb.rotation * deltaRotation);
             yield return null;
         }
@@ -95,7 +97,7 @@ public class Enemy : MonoBehaviour
         animator.SetBool("Forward", true);
         animator.SetBool("Running", true);
 
-        rb.velocity = 3f * transform.forward;
+        rb.velocity = 3 * movementSpeed * transform.forward;
 
         while ((transform.position - _position).magnitude >= 1f)
         {
@@ -111,6 +113,8 @@ public class Enemy : MonoBehaviour
 
     private void MoveTo(Vector3 _position)
     {
+        Debug.Log(gameObject.name + " starts MoveTo");
+
         Vector3Int _destCell = grid.LocalToCell(_position);
         Vector3Int _selfCell = grid.LocalToCell(transform.position);
 
@@ -147,17 +151,26 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            if(zMovementCell != Vector3Int.zero) moveToCoroutine = StartCoroutine(MovingToNextCell(grid.CellToLocal(_selfCell + zMovementCell), alert));
+            if (zMovementCell != Vector3Int.zero)
+            {
+                moveToCoroutine = StartCoroutine(MovingToNextCell(grid.CellToLocal(_selfCell + zMovementCell), alert));
+            }
+            else
+            {
+                CheckIfMovementEnds();
+            }
         }
     }
 
     IEnumerator MovingToNextCell(Vector3 _position, bool _running)
     {
+        Debug.Log(gameObject.name + " starts MovingToNextCell");
+
         float _sign = Mathf.Sign(Vector3.SignedAngle(transform.forward, (_position - transform.position), Vector3.up));
 
-        while (Vector3.Angle(transform.forward, (_position - transform.position)) > 8f)
+        while (Vector3.Angle(transform.forward, (_position - transform.position)) > 10f)
         {
-            Quaternion deltaRotation = Quaternion.Euler(new Vector3(0f, _sign * 2f, 0f));
+            Quaternion deltaRotation = Quaternion.Euler(new Vector3(0f, _sign * rotationSpeed * Time.deltaTime, 0f));
             rb.MoveRotation(rb.rotation * deltaRotation);
             yield return null;
         }
@@ -168,7 +181,7 @@ public class Enemy : MonoBehaviour
         animator.SetBool("Forward", true);
         animator.SetBool("Running", _running);
 
-        rb.velocity = (_running ? 3f : 1f) * transform.forward;
+        rb.velocity = (_running ? (2 * movementSpeed) : movementSpeed) * transform.forward;
 
         while ((transform.position - _position).magnitude >= 0.05f)
         {
@@ -217,11 +230,13 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator RotateToLastRotation()
     {
+        Debug.Log(gameObject.name + " starts RotateToLastRotation");
+
         float _sign = Mathf.Sign(Vector3.SignedAngle(transform.forward, (lastRotation - transform.position), Vector3.up));
 
-        while (Vector3.Angle(transform.forward, (lastRotation - transform.position)) > 8f)
+        while (Vector3.Angle(transform.forward, (lastRotation - transform.position)) > 10f)
         {
-            Quaternion deltaRotation = Quaternion.Euler(new Vector3(0f, _sign * 2f, 0f));
+            Quaternion deltaRotation = Quaternion.Euler(new Vector3(0f, _sign * rotationSpeed * Time.deltaTime, 0f));
             rb.MoveRotation(rb.rotation * deltaRotation);
             yield return null;
         }
@@ -231,8 +246,11 @@ public class Enemy : MonoBehaviour
     public void StartTurn()
     {
         stopMovement = false;
+        StopAllCoroutines();
+        moveToCoroutine = null;
+
         // if is in alert
-        if(alert)
+        if (alert)
         {
             StartCoroutine(MovementSequence(alertPosition, true));
         }
@@ -254,7 +272,9 @@ public class Enemy : MonoBehaviour
 
     IEnumerator MovementSequence(Vector3 _position, bool _running)
     {
-        int _turns = _running ? 5 : 3;
+        Debug.Log(gameObject.name + " starts MovementSequence");
+
+        int _turns = _running ? 7 : 5;
 
         for(int i=0; i<_turns;i++)
         {
@@ -281,11 +301,13 @@ public class Enemy : MonoBehaviour
 
     IEnumerator RotateToward(Vector3 _position)
     {
+        Debug.Log(gameObject.name + " starts RotateToward");
+
         float _sign = Mathf.Sign(Vector3.SignedAngle(transform.forward, (_position - transform.position), Vector3.up));
 
-        while (Vector3.Angle(transform.forward, (_position - transform.position)) > 8f)
+        while (Vector3.Angle(transform.forward, (_position - transform.position)) > 10f)
         {
-            Quaternion deltaRotation = Quaternion.Euler(new Vector3(0f, _sign * 2f, 0f));
+            Quaternion deltaRotation = Quaternion.Euler(new Vector3(0f, _sign * rotationSpeed * Time.deltaTime, 0f));
             rb.MoveRotation(rb.rotation * deltaRotation);
             yield return null;
         }

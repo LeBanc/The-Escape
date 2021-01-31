@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public Grid grid;
+    public float movementSpeed = 1f;
+    public float rotationSpeed = 90f;
     public GameObject nearCellPrefab;
     public GameObject farCellPrefab;
     public float cellHeightOffset = 0.01f;
@@ -192,7 +194,7 @@ public class PlayerController : MonoBehaviour
 
         while(Vector3.Angle(transform.forward,(_position - transform.position)) > 8f)
         {
-            Quaternion deltaRotation = Quaternion.Euler(new Vector3(0f, _sign * 2f, 0f));
+            Quaternion deltaRotation = Quaternion.Euler(new Vector3(0f, _sign * rotationSpeed * Time.deltaTime, 0f));
             rb.MoveRotation(rb.rotation * deltaRotation);
             yield return null;
         }
@@ -203,19 +205,19 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("Forward", true);
         animator.SetBool("Running", _running);
         
-        rb.velocity = (_running ? 3f : 1f) * transform.forward;
+        rb.velocity = (_running ? (2 * movementSpeed) : movementSpeed) * transform.forward;
 
-        while ( (transform.position - _position).magnitude >= 0.05f)
+        while ( (transform.position - _position).magnitude >= 0.2f)
         {
             yield return null;
         }
 
-        // Alert penemy if running
+        // Alert enemy if running
         if(_running)
         {
             particles.Play();
 
-            Collider[] _colls = Physics.OverlapSphere(transform.position, 2f);
+            Collider[] _colls = Physics.OverlapSphere(transform.position, 3f);
             foreach (Collider _c in _colls)
             {
                 if (_c.CompareTag("Enemy"))

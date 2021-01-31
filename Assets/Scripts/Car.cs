@@ -69,7 +69,7 @@ public class Car : MonoBehaviour
         audioSource.Play();
         bipParticles.Play();
 
-        Collider[] _colls = Physics.OverlapSphere(transform.position, 4f);
+        Collider[] _colls = Physics.OverlapSphere(transform.position, 8f);
         foreach(Collider _c in _colls)
         {
             if(_c.CompareTag("Enemy"))
