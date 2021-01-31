@@ -833,7 +833,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'You don''t realise yet what is happening but you were at the wrong place
+  m_Text: 'You don''t realize yet what is happening but you were at the wrong place
     at the wrong time ...
 
     You just had the time to hide when men came in your
@@ -841,7 +841,7 @@ MonoBehaviour:
     decided to escape.
 
     You manage to sneak into the parking lot and you have
-    to find the right car without beeing detected.'
+    to find the right car without being detected.'
 --- !u!222 &526072486
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1186,7 +1186,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Game dev, progrmmaing and assets'' integration: Benoit Le Dirach
+  m_Text: 'Game development, programming and assets'' integration: Benoit Le Dirach
 
 
     Thank
