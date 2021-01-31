@@ -38,15 +38,18 @@ public class Car : MonoBehaviour
         if(isObjective)
         {
             audioSource.clip = startEngineClip;
+            GameController.Win();
         }
         else if(carAlarm)
         {
             audioSource.clip = alarmClip;
             alarmParticles.Play();
+            GameController.EndTurn();
         }
         else
         {
             audioSource.clip = openDoorClip;
+            GameController.EndTurn();
         }
         audioSource.Play();
     }

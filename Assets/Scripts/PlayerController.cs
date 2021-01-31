@@ -31,12 +31,29 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         lineRenderer = GetComponent<LineRenderer>();
+
+        GameController.OnLoose += StopMovement;
+    }
+
+    private void OnDestroy()
+    {
+        GameController.OnLoose -= StopMovement;
     }
 
     private void Start()
     {
         ClearLine();
+    }
+
+    public void StartTurn()
+    {
         SetMovementCells();
+    }
+
+    public void EndTurn()
+    {
+        ClearLine();
+        ClearMovementCells();
     }
 
     private void SetMovementCells()
@@ -125,6 +142,21 @@ public class PlayerController : MonoBehaviour
     private void MoveTo(Vector3 _position, bool _running)
     {
         StartCoroutine(MovingSequence(_position, _running));
+        UIManager.HideUIWhenMoving();
+    }
+
+    private void StopMovement()
+    {
+        StopAllCoroutines();
+        rb.velocity = Vector3.zero;
+        animator.SetBool("Walking", false);
+        animator.SetBool("Forward", false);
+        animator.SetBool("Running", false);
+
+        if (moveToCoroutine != null)
+        {
+            moveToCoroutine = null;
+        }
     }
 
     IEnumerator MovingSequence(Vector3 _position, bool _running)
@@ -153,8 +185,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(1f);
-        SetMovementCells();
+        GameController.EndTurn();
     }
 
     IEnumerator MovingToNextCell(Vector3 _position, bool _running)

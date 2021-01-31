@@ -10,6 +10,21 @@ public class GameController : MonoBehaviour
     private Car objectiveCar;
     private Car[] carArray;
 
+    private Enemy[] enemiesArray;
+
+    private int carBipTurn = 0;
+
+    public delegate void GameControllerEventHandler();
+    public static event GameControllerEventHandler OnPlayerTurnStart;
+    public static event GameControllerEventHandler OnPlayerTurnEnd;
+    public static event GameControllerEventHandler OnEnemyTurnStart;
+    public static event GameControllerEventHandler OnEnemyTurnEnd;
+    public static event GameControllerEventHandler OnBipUsed;
+    public static event GameControllerEventHandler OnBipAvailable;
+    public static event GameControllerEventHandler OnWin;
+    public static event GameControllerEventHandler OnLoose;
+
+
     public static Car[] Cars
     {
         get { return instance.carArray; }
@@ -31,6 +46,10 @@ public class GameController : MonoBehaviour
 
         objectiveCar = carArray[Random.Range(0, carArray.Length - 1)];
         objectiveCar.IsObjective = true;
+
+        enemiesArray = FindObjectsOfType<Enemy>();
+
+        StartPlayerTurn();
     }
 
     private void OnDestroy()
@@ -41,5 +60,67 @@ public class GameController : MonoBehaviour
     public void CarBip()
     {
         objectiveCar.OpeningBip();
+        carBipTurn = 3;
+        OnBipUsed?.Invoke();
+        EndPlayerTurn();
+    }
+
+    private void StartPlayerTurn()
+    {
+        if (carBipTurn > 0) carBipTurn--;
+        if (carBipTurn == 0) OnBipAvailable?.Invoke();
+        player.StartTurn();
+        OnPlayerTurnStart?.Invoke();
+    }
+
+    public static void EndTurn()
+    {
+        instance.EndPlayerTurn();
+    }
+
+    public void EndPlayerTurn()
+    {
+        player.EndTurn();
+        OnPlayerTurnEnd?.Invoke();
+        StartCoroutine(WaitForEnemyTurn());
+    }
+
+    private void EnemyTurn()
+    {
+        OnEnemyTurnStart?.Invoke();
+        Enemy.StartEnemyTurn();
+        StartCoroutine(WaitForPlayerTurn());
+    }
+
+    private IEnumerator WaitForEnemyTurn()
+    {
+        yield return new WaitForSeconds(1f);
+        EnemyTurn();
+    }
+    private IEnumerator WaitForPlayerTurn()
+    {
+        foreach(Enemy _enemy in enemiesArray)
+        {
+            _enemy.StartTurn();
+            while(!_enemy.IsStopped)
+            {
+                yield return null;
+            }            
+        }
+
+        yield return new WaitForSeconds(2f);
+
+        Enemy.EndEnemyTurn();
+        StartPlayerTurn();
+    }
+
+    public static void Win()
+    {
+        OnWin?.Invoke();
+    }
+
+    public static void Loose()
+    {
+        OnLoose?.Invoke();
     }
 }
