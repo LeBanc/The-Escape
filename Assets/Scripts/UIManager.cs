@@ -102,7 +102,6 @@ public class UIManager : MonoBehaviour
     private void ShowPlayerTurn()
     {
         StartCoroutine(PlayerTurnText());
-        ShowUI();
     }
 
     private IEnumerator PlayerTurnText()
@@ -110,6 +109,7 @@ public class UIManager : MonoBehaviour
         playerTurnText.enabled = true;
         yield return new WaitForSeconds(1.5f);
         playerTurnText.enabled = false;
+        ShowUI();
     }
 
     private void ShowEnemyTurn()

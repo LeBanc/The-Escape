@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     private Vector3 alertPosition;
     private bool hasLastPosition;
     private Vector3 lastPosition;
-    private Quaternion lastRotation;
+    private Vector3 lastRotation;
     private bool stopMovement;
 
     private Animator animator;
@@ -47,22 +47,36 @@ public class Enemy : MonoBehaviour
 
     private void CheckIfPlayerVisible(Vector3 _playerPosition)
     {
+        // Change car layer to detect raycast
+        foreach (Car _car in GameController.Cars)
+        {
+            _car.gameObject.layer = LayerMask.NameToLayer("Default");
+            CarDoor[] _carDoors = _car.GetComponentsInChildren<CarDoor>();
+            foreach (CarDoor _door in _carDoors)
+            {
+                _door.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+            }
+        }
+
         Vector3 direction = _playerPosition - transform.position;
-        Ray _ray = new Ray(transform.position,direction);
-        if (Physics.Raycast(_ray, out RaycastHit _hit, 10f, LayerMask.GetMask(new string[] {"Default", "Ignore Raycast", "Ground" })))
+        Ray _ray = new Ray(transform.position + Vector3.up, direction);
+        if (Physics.Raycast(_ray, out RaycastHit _hit, 10f))
         {
             if (_hit.collider.CompareTag("Player"))
             {
-                if (moveToCoroutine != null)
-                {
-                    StopCoroutine(moveToCoroutine);
-                    moveToCoroutine = null;
-                }
-
+                StopAllCoroutines();
+                moveToCoroutine = null;
                 audiosource.Play();
                 GameController.Loose();
                 StartCoroutine(PlayerFound(_playerPosition));
+                fov.OnPlayerEnter -= CheckIfPlayerVisible;
             }
+        }
+
+        // Change car layer to not detect it with OnMouse events
+        foreach (Car _car in GameController.Cars)
+        {
+            _car.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
         }
     }
 
@@ -168,29 +182,29 @@ public class Enemy : MonoBehaviour
         animator.SetBool("Forward", false);
 
         moveToCoroutine = null;
-        CheckIfMovementEnds(_position);
+        CheckIfMovementEnds();
     }
 
-    private void CheckIfMovementEnds(Vector3 _position)
+    private void CheckIfMovementEnds()
     {
         if(alert)
         {
-            if ((_position - transform.position).magnitude < 3f)
+            if ((alertPosition - transform.position).magnitude < 3f)
             {
                 stopMovement = true;
                 alert = false;
             }
         }
         else if (hasLastPosition)
-        {
-            
+        {            
                 if(grid.LocalToCell(lastPosition) == grid.LocalToCell(transform.position))
                 {
                     stopMovement = true;
                     hasLastPosition = false;
+                StartCoroutine(RotateToLastRotation());
                 }
         }
-        else
+        else if(patrolPoints.Count > 0)
         {
             if (grid.LocalToCell(patrolPoints[patrolIndex].position) == grid.LocalToCell(transform.position))
             {
@@ -199,6 +213,19 @@ public class Enemy : MonoBehaviour
                 if (patrolIndex >= patrolPoints.Count) patrolIndex = 0;
             }
         }
+    }
+
+    private IEnumerator RotateToLastRotation()
+    {
+        float _sign = Mathf.Sign(Vector3.SignedAngle(transform.forward, (lastRotation - transform.position), Vector3.up));
+
+        while (Vector3.Angle(transform.forward, (lastRotation - transform.position)) > 8f)
+        {
+            Quaternion deltaRotation = Quaternion.Euler(new Vector3(0f, _sign, 0f));
+            rb.MoveRotation(rb.rotation * deltaRotation);
+            yield return null;
+        }
+        transform.LookAt(lastRotation);
     }
 
     public void StartTurn()
@@ -239,6 +266,30 @@ public class Enemy : MonoBehaviour
             MoveTo(_position);
         }
         stopMovement = true;
+    }
+
+    public void Alert(Vector3 _position)
+    {
+        alert = true;
+        alertPosition = _position;
+        lastPosition = transform.position;
+        lastRotation = transform.position + transform.forward;
+        hasLastPosition = true;
+
+        StartCoroutine(RotateToward(alertPosition));
+    }
+
+    IEnumerator RotateToward(Vector3 _position)
+    {
+        float _sign = Mathf.Sign(Vector3.SignedAngle(transform.forward, (_position - transform.position), Vector3.up));
+
+        while (Vector3.Angle(transform.forward, (_position - transform.position)) > 8f)
+        {
+            Quaternion deltaRotation = Quaternion.Euler(new Vector3(0f, _sign, 0f));
+            rb.MoveRotation(rb.rotation * deltaRotation);
+            yield return null;
+        }
+        transform.LookAt(_position);
     }
 
     public static void StartEnemyTurn()

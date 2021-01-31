@@ -1,7 +1,5 @@
-﻿using Packages.Rider.Editor.UnitTesting;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.ExceptionServices;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -207,11 +205,24 @@ public class PlayerController : MonoBehaviour
         
         rb.velocity = (_running ? 3f : 1f) * transform.forward;
 
-        if (_running) particles.Play();
-
         while ( (transform.position - _position).magnitude >= 0.05f)
         {
             yield return null;
+        }
+
+        // Alert penemy if running
+        if(_running)
+        {
+            particles.Play();
+
+            Collider[] _colls = Physics.OverlapSphere(transform.position, 2f);
+            foreach (Collider _c in _colls)
+            {
+                if (_c.CompareTag("Enemy"))
+                {
+                    _c.GetComponent<Enemy>().Alert(transform.position);
+                }
+            }
         }
 
         rb.velocity = Vector3.zero;

@@ -45,6 +45,15 @@ public class Car : MonoBehaviour
             audioSource.clip = alarmClip;
             alarmParticles.Play();
             GameController.EndTurn();
+
+            Collider[] _colls = Physics.OverlapSphere(transform.position, 10f);
+            foreach (Collider _c in _colls)
+            {
+                if (_c.CompareTag("Enemy"))
+                {
+                    _c.GetComponent<Enemy>().Alert(transform.position);
+                }
+            }
         }
         else
         {
@@ -58,8 +67,16 @@ public class Car : MonoBehaviour
     {
         audioSource.clip = bipClip;
         audioSource.Play();
-
         bipParticles.Play();
+
+        Collider[] _colls = Physics.OverlapSphere(transform.position, 4f);
+        foreach(Collider _c in _colls)
+        {
+            if(_c.CompareTag("Enemy"))
+            {
+                _c.GetComponent<Enemy>().Alert(transform.position);
+            }
+        }
     }
 
 }

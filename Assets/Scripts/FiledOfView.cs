@@ -16,4 +16,12 @@ public class FiledOfView : MonoBehaviour
             OnPlayerEnter?.Invoke(other.transform.position);
         }
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            OnPlayerEnter?.Invoke(other.transform.position);
+        }
+    }
 }

@@ -70,9 +70,15 @@ public class GameController : MonoBehaviour
     {
         if (carBipTurn > 0) carBipTurn--;
         if (carBipTurn == 0) OnBipAvailable?.Invoke();
-        player.StartTurn();
         OnPlayerTurnStart?.Invoke();
+        StartCoroutine(PauseAtPlayerTurn());
     }
+
+    private IEnumerator PauseAtPlayerTurn()
+    {
+        yield return new WaitForSeconds(1.5f);
+        player.StartTurn();
+    }    
 
     public static void EndTurn()
     {
@@ -90,26 +96,28 @@ public class GameController : MonoBehaviour
     {
         OnEnemyTurnStart?.Invoke();
         Enemy.StartEnemyTurn();
-        StartCoroutine(WaitForPlayerTurn());
+        StartCoroutine(EnemyTurnSequence());
     }
 
     private IEnumerator WaitForEnemyTurn()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
         EnemyTurn();
     }
-    private IEnumerator WaitForPlayerTurn()
+    private IEnumerator EnemyTurnSequence()
     {
-        foreach(Enemy _enemy in enemiesArray)
+        yield return new WaitForSeconds(1.5f);
+
+        foreach (Enemy _enemy in enemiesArray)
         {
             _enemy.StartTurn();
             while(!_enemy.IsStopped)
             {
                 yield return null;
-            }            
+            }
         }
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
 
         Enemy.EndEnemyTurn();
         StartPlayerTurn();

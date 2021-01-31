@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public Canvas credits;
+    public Canvas play;
 
     public void Play()
     {
@@ -20,10 +21,18 @@ public class MainMenu : MonoBehaviour
     public void ShowCredits()
     {
         credits.enabled = true;
+        credits.transform.SetAsLastSibling();
     }
 
     public void HideCredits()
     {
         credits.enabled = false;
+        credits.transform.SetAsFirstSibling();
+    }
+
+    public void ShowPlayCanvas()
+    {
+        play.enabled = true;
+        play.transform.SetAsLastSibling();
     }
 }
