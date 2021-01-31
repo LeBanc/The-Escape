@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -122,5 +123,15 @@ public class GameController : MonoBehaviour
     public static void Loose()
     {
         OnLoose?.Invoke();
+    }
+
+    public void Retry()
+    {
+        SceneManager.LoadScene("Level");
+    }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }
