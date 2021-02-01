@@ -25,6 +25,8 @@ public class Enemy : MonoBehaviour
 
     private Coroutine moveToCoroutine;
 
+    private Footstep[] feet;
+
     public bool IsStopped
     {
         get{ return stopMovement; }
@@ -40,6 +42,12 @@ public class Enemy : MonoBehaviour
         audiosource = GetComponent<AudioSource>();
 
         transform.position = grid.CellToLocal(grid.LocalToCell(transform.position));
+    }
+
+    private void Start()
+    {
+        feet = GetComponentsInChildren<Footstep>();
+        SetFootstepVolume(1);
     }
 
     private void OnDestroy()
@@ -96,6 +104,7 @@ public class Enemy : MonoBehaviour
         animator.SetBool("Walking", true);
         animator.SetBool("Forward", true);
         animator.SetBool("Running", true);
+        SetFootstepVolume(3);
 
         rb.velocity = 3 * movementSpeed * transform.forward;
 
@@ -109,6 +118,7 @@ public class Enemy : MonoBehaviour
         animator.SetBool("Running", false);
 
         rb.velocity = Vector3.zero;
+        SetFootstepVolume(1);
     }
 
     private void MoveTo(Vector3 _position)
@@ -206,6 +216,7 @@ public class Enemy : MonoBehaviour
             {
                 stopMovement = true;
                 alert = false;
+                SetFootstepVolume(1);
             }
         }
         else if (hasLastPosition)
@@ -214,8 +225,9 @@ public class Enemy : MonoBehaviour
                 {
                     stopMovement = true;
                     hasLastPosition = false;
-                StartCoroutine(RotateToLastRotation());
-                }
+                    StartCoroutine(RotateToLastRotation());
+                    SetFootstepVolume(1);
+            }
         }
         else if(patrolPoints.Count > 0)
         {
@@ -224,6 +236,7 @@ public class Enemy : MonoBehaviour
                 stopMovement = true;
                 patrolIndex++;
                 if (patrolIndex >= patrolPoints.Count) patrolIndex = 0;
+                SetFootstepVolume(1);
             }
         }
     }
@@ -252,16 +265,19 @@ public class Enemy : MonoBehaviour
         // if is in alert
         if (alert)
         {
+            SetFootstepVolume(3);
             StartCoroutine(MovementSequence(alertPosition, true));
         }
         // if returns from an alert
         else if(hasLastPosition)
         {
+            SetFootstepVolume(2);
             StartCoroutine(MovementSequence(lastPosition, false));
         }
         // if has patrol points
         else if(patrolPoints.Count > 0)
         {
+            SetFootstepVolume(2);
             StartCoroutine(MovementSequence(patrolPoints[patrolIndex].position, false));
         }
         else
@@ -285,6 +301,7 @@ public class Enemy : MonoBehaviour
             }
             MoveTo(_position);
         }
+        SetFootstepVolume(1);
         stopMovement = true;
     }
 
@@ -334,6 +351,14 @@ public class Enemy : MonoBehaviour
         foreach (Car _car in GameController.Cars)
         {
             _car.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+        }
+    }
+
+    private void SetFootstepVolume(int _phase)
+    {
+        foreach(Footstep _foot in feet)
+        {
+            _foot.SetVolume(_phase);
         }
     }
 

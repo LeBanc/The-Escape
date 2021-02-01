@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private LineRenderer lineRenderer;
 
+    private Footstep[] feet;
+
 
     private void Awake()
     {
@@ -43,6 +45,8 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         ClearLine();
+        feet = GetComponentsInChildren<Footstep>();
+        SetFootstepVolume(1);
     }
 
     public void StartTurn()
@@ -54,6 +58,7 @@ public class PlayerController : MonoBehaviour
     {
         ClearLine();
         ClearMovementCells();
+        Invoke("ResetSoundVolume", 1f);
     }
 
     private void SetMovementCells()
@@ -141,6 +146,7 @@ public class PlayerController : MonoBehaviour
 
     private void MoveTo(Vector3 _position, bool _running)
     {
+        SetFootstepVolume(_running?3:2);
         StartCoroutine(MovingSequence(_position, _running));
         UIManager.HideUIWhenMoving();
     }
@@ -258,6 +264,19 @@ public class PlayerController : MonoBehaviour
     void ClearLine()
     {
         lineRenderer.enabled = false;
+    }
+
+    private void SetFootstepVolume(int _phase)
+    {
+        foreach (Footstep _foot in feet)
+        {
+            _foot.SetVolume(_phase);
+        }
+    }
+
+    private void ResetSoundVolume()
+    {
+        SetFootstepVolume(1);
     }
 
 }

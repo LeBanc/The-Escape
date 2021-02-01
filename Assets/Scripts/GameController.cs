@@ -101,7 +101,7 @@ public class GameController : MonoBehaviour
 
     private IEnumerator WaitForEnemyTurn()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         EnemyTurn();
     }
     private IEnumerator EnemyTurnSequence()
